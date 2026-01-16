@@ -1,8 +1,9 @@
+import Home from "./pages/Home"; 
  const App=()=>{
   return (
-    <h1 className="text-yellow-500 font-bold">
-      CLUB FM
-    </h1>
+    <div>
+    <Home/>
+</div>
   )
 }
 export default App;
