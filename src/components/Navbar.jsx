@@ -21,7 +21,7 @@ const closeMobileMenu=()=>{
   return (
     <nav className="relative w-full bg-transparent p-4">
       <div className="container flex justify-end items-center">
-        <div className="hidden md:flex gap-4 bg-black p-2 rounded-sm">
+        <div className="hidden md:flex gap-4 p-2 rounded-sm">
           {navLinks.map((link) => (
             <button
               key={link.id}
