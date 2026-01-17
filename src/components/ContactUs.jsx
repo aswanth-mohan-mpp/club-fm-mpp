@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 import bottomBanner from "../assets/images/bottom-banner-web.png";
 import logo from "../assets/images/fm-logo.png";
 import youtubeIcon from "../assets/icons/youtube-yellow.svg";
@@ -6,12 +9,21 @@ import instaIcon from "../assets/icons/insta-yellow.svg";
 import fbicon from "../assets/icons/fb-yellow.svg";
 import xIcon from "../assets/icons/x-yellow.svg";
 
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+});
+
 const locations = [
   {
     name: "TRIVANDRUM",
     address: "Mathrubhumi Buildings, Vanchiyoor, Thiruvanathapuram 695035",
     off: "0471 2520600",
     whatsapp: "917510555943",
+    lat: 8.497,
+    lng: 76.941,
   },
   {
     name: "ALAPPUZHA",
@@ -19,6 +31,8 @@ const locations = [
       "Mathrubhumi V.M. Nair Memorial Building, Church Road, V.M. Nair Memorial Building Alappuzha, Alappuzha 688011",
     off: "0477 2230864",
     whatsapp: "91906 105 1048",
+    lat: 9.493,
+    lng: 76.333,
   },
   {
     name: "KOZHIKODE",
@@ -26,6 +40,8 @@ const locations = [
       "CLUB FM 104.8, 4th Floor, MM Press Cherootty Road, Kozhikode 673001",
     off: "0495 2779444",
     whatsapp: "919061031048",
+    lat: 11.252,
+    lng: 75.777,
   },
   {
     name: "KANNUR",
@@ -33,6 +49,8 @@ const locations = [
       "CLUB FM 94.3, 4th floor, Mathrubhumi Building Nadal Bypass, Edakkad PO, Kannur 670663",
     off: "0497 2825330",
     whatsapp: "917510666943",
+    lat: 11.838,
+    lng: 75.409,
   },
   {
     name: "THRISSUR",
@@ -40,6 +58,8 @@ const locations = [
       "Mathrubhumi Buildings, 2nd Floor, Mathrubhumi, Veliyannur Road Thrissur, 680021",
     off: "0487 2455300",
     whatsapp: "917510551048",
+    lat: 10.518,
+    lng: 76.216,
   },
   {
     name: "COCHIN",
@@ -47,11 +67,30 @@ const locations = [
       "Mathrubhumi Press, Udyogamandal Manjummel North Janatha Road, Cochin 683501",
     off: "",
     whatsapp: "",
+    lat: 10.059,
+    lng: 76.313,
   },
 ];
 
+function MapUpdater({ center, zoom }) {
+  const map = useMap();
+  useEffect(() => {
+    map.flyTo(center, zoom);
+  }, [center, zoom, map]);
+  return null;
+}
+
 export default function ContactUs() {
   const [openIndex, setOpenIndex] = useState(-1);
+
+  const defaultCenter = [10.5, 76.2];
+  const defaultZoom = 7;
+
+  const currentCenter =
+    openIndex !== -1 && locations[openIndex]
+      ? [locations[openIndex].lat, locations[openIndex].lng]
+      : defaultCenter;
+  const currentZoom = openIndex !== -1 ? 13 : defaultZoom;
 
   return (
     <section
@@ -78,9 +117,8 @@ export default function ContactUs() {
               >
                 <span>{loc.name}</span>
                 <svg
-                  className={`w-4 h-4 transform transition-transform duration-300 ${
-                    openIndex === index ? "rotate-180" : ""
-                  }`}
+                  className={`w-4 h-4 transform transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -96,18 +134,17 @@ export default function ContactUs() {
 
               <div
                 className={`overflow-hidden transition-all duration-300 ease-in-out bg-[#262626] text-white
-                            ${
-                              openIndex === index
-                                ? "max-h-64 opacity-100"
-                                : "max-h-0 opacity-0"
-                            }`}
+                            ${openIndex === index
+                    ? "max-h-64 opacity-100"
+                    : "max-h-0 opacity-0"
+                  }`}
               >
                 <div className="p-4 text-center text-sm font-medium">
                   <p className="mb-1">{loc.address}</p>
                   <p className="text-club-yellow">
-                    OFF : <span className="text-white">{loc.off}</span> ,
+                    OFF : <span className="text-club-yellow">{loc.off}</span> ,
                     WHATSAPP :{" "}
-                    <span className="text-white">{loc.whatsapp}</span>
+                    <span className="text-club-yellow">{loc.whatsapp}</span>
                   </p>
                 </div>
               </div>
@@ -116,7 +153,38 @@ export default function ContactUs() {
         </div>
 
         <div className="w-full lg:w-2/3">
-          <div className="w-full h-full min-h-[300px] lg:min-h-[400px] bg-gray-300/80 backdrop-blur-sm shadow-xl"></div>
+          <div className="w-full h-full min-h-[300px] lg:min-h-[400px] shadow-xl">
+            <MapContainer
+              center={defaultCenter}
+              zoom={defaultZoom}
+              scrollWheelZoom={false}
+              className="w-full h-full min-h-[400px]"
+              style={{ height: "100%", width: "100%" }}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <MapUpdater center={currentCenter} zoom={currentZoom} />
+
+              {locations.map((loc, index) => (
+                <Marker
+                  key={index}
+                  position={[loc.lat, loc.lng]}
+                  eventHandlers={{
+                    click: () => {
+                      setOpenIndex(index);
+                    },
+                  }}
+                >
+                  <Popup>
+                    <strong className="text-club-yellow font-bold">{loc.name}</strong><br />
+                    {loc.address}
+                  </Popup>
+                </Marker>
+              ))}
+            </MapContainer>
+          </div>
         </div>
       </div>
       <div className="flex justify-end items-center gap-2 pb-4 md:pb-6 px-4 md:px-6">
