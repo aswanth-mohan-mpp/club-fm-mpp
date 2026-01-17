@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div className="relative min-h-screen bg-club-background flex flex-col">
       <TopBanner />
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center gap-6 md:gap-12">
         <ClubWonders />
         <AboutUs />
         <ContactUs />

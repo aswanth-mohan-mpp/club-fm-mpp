@@ -46,7 +46,7 @@ export default function ContactUs() {
   return (
     <section
       id="contact"
-      className="relative w-full py-20 bg-cover bg-center"
+      className="container relative w-full mx-auto py-20 bg-cover bg-center"
       style={{ backgroundImage: `url(${bottomBanner})` }}
     >
       <div className="absolute inset-0 bg-black/50 md:bg-transparent"></div>

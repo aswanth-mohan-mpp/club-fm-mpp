@@ -32,14 +32,16 @@ const closeMobileMenu=()=>{
             </button>
           ))}
         </div>
-        <div className="md:hidden">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="focus:outline-none"
-          >
-            <img src={menuIcon} alt="menu" className="w-8 h-8" />
-          </button>
-        </div>
+      {!isOpen && (
+  <div className="md:hidden">
+    <button
+      onClick={() => setIsOpen(true)}
+      className="focus:outline-none"
+    >
+      <img src={menuIcon} alt="menu" className="w-8 h-8" />
+    </button>
+  </div>
+)}
       </div>
 
       {isOpen && (

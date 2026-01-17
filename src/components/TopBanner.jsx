@@ -17,11 +17,11 @@ export default function TopBanner() {
           <img src={fmLogo} alt="logo" className="w-20" />
         </div>
 
-      <div className="absolute -bottom-36 left-0 w-full z-30 flex justify-center pointer-events-none">
+      <div className="absolute -bottom-28 left-0 w-full z-30 flex justify-center pointer-events-none">
         <img
           src={wave}
           alt="wave"
-          className="w-full max-w-7xl"
+          className="w-full max-w-5xl"
         />
       </div>
     </section>
