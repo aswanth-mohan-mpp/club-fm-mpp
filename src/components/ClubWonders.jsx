@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import union from "../assets/icons/union.svg";
 import share from "../assets/icons/share.svg";
+import playicon from "../assets/icons/video-play.svg";
 
 const ClubWonders = () => {
   const [videos, setVideos] = useState([]);
@@ -98,19 +99,7 @@ const ClubWonders = () => {
                 onClick={() => setIsPlaying(true)}
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 hover:scale-110 transition-transform duration-300"
               >
-                <svg
-                  width="80"
-                  height="80"
-                  viewBox="0 0 80 80"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M55 40L30 55V25L55 40Z"
-                    fill="white"
-                    className="opacity-90"
-                  />
-                </svg>
+              <img src={playicon} alt="play" className="w-20 h-20"/>
               </button>
             </>
           ) : (
