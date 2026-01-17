@@ -11,9 +11,6 @@ module.exports = {
         "light-gray": "#E0E0E0",
         "dark-gray": "#262525B0",
       },
-      fontFamily: {
-        condensed: ["Fjalla One", "sans-serif"],
-      },
     },
     plugins: [],
   },

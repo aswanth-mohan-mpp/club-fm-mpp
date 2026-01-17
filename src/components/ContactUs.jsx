@@ -54,7 +54,7 @@ export default function ContactUs() {
       <div className="container mx-auto px-4 relative z-10">
 
         <div className="mb-8">
-          <h2 className="text-black text-xl md:text-2xl font-condensed font-bold bg-white px-3 py-1 inline-block uppercase shadow-[4px_4px_0px_0px_rgba(255,221,0,1)]">
+          <h2 className="text-black text-xl md:text-2xl font-bold bg-white px-3 py-1 inline-block uppercase shadow-[4px_4px_0px_0px_rgba(255,221,0,1)]">
             CONTACT US
           </h2>
         </div>
@@ -66,7 +66,7 @@ export default function ContactUs() {
               <div key={index} className="w-full">
                 <button
                   onClick={() => setOpenIndex(index === openIndex ? -1 : index)}
-                  className={`w-full flex justify-between items-center px-4 py-3 font-condensed font-bold uppercase transition-colors bg-club-yellow text-black`}
+                  className={`w-full flex justify-between items-center px-4 py-3 font-bold uppercase transition-colors bg-club-yellow text-black`}
                 >
                   <span>{loc.name}</span>
                   <svg className={`w-4 h-4 transform transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
