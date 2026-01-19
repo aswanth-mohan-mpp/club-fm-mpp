@@ -117,8 +117,9 @@ export default function ContactUs() {
               >
                 <span>{loc.name}</span>
                 <svg
-                  className={`w-4 h-4 transform transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""
-                    }`}
+                  className={`w-4 h-4 transform transition-transform duration-300 ${
+                    openIndex === index ? "rotate-180" : ""
+                  }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -134,10 +135,11 @@ export default function ContactUs() {
 
               <div
                 className={`overflow-hidden transition-all duration-300 ease-in-out bg-[#262626] text-white
-                            ${openIndex === index
-                    ? "max-h-64 opacity-100"
-                    : "max-h-0 opacity-0"
-                  }`}
+                            ${
+                              openIndex === index
+                                ? "max-h-64 opacity-100"
+                                : "max-h-0 opacity-0"
+                            }`}
               >
                 <div className="p-4 text-center text-sm font-medium">
                   <p className="mb-1">{loc.address}</p>
@@ -158,6 +160,7 @@ export default function ContactUs() {
               center={defaultCenter}
               zoom={defaultZoom}
               scrollWheelZoom={false}
+              attributionControl={false}
               className="w-full h-full min-h-[400px]"
               style={{ height: "100%", width: "100%" }}
             >
@@ -178,7 +181,10 @@ export default function ContactUs() {
                   }}
                 >
                   <Popup>
-                    <strong className="text-club-yellow font-bold">{loc.name}</strong><br />
+                    <strong className="text-club-yellow font-bold">
+                      {loc.name}
+                    </strong>
+                    <br />
                     {loc.address}
                   </Popup>
                 </Marker>
