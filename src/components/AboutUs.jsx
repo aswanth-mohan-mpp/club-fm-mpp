@@ -6,7 +6,7 @@ export default function AboutUs() {
   return (
     <section
       id="about"
-      className="container relative w-full mx-auto bg-cover bg-center min-h-[600px] flex flex-col h-full"
+      className="container relative w-full mx-auto bg-cover bg-center min-h-[600px] flex flex-col h-full md:mt-12"
       style={{ backgroundImage: `url(${bottomBanner})` }}
     >
         <div className="flex justify-start">

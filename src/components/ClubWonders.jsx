@@ -75,7 +75,7 @@ const ClubWonders = () => {
   return (
     <section
       id="club-wonders"
-      className="container mx-auto relative w-full py-10 mt-12"
+      className="container mx-auto relative w-full"
     >
       <div className="relative w-full aspect-video md:aspect-[21/9] bg-black overflow-hidden shadow-2xl group flex flex-col">
         <div className="absolute top-0 left-0 z-30 flex justify-start">

@@ -95,7 +95,7 @@ export default function ContactUs() {
   return (
     <section
       id="contact"
-      className="container relative w-full mx-auto  bg-cover bg-center"
+      className="container relative w-full mx-auto  bg-cover bg-center md:mt-12"
       style={{ backgroundImage: `url(${bottomBanner})` }}
     >
       <div className="flex justify-start">
