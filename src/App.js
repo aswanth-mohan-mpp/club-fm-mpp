@@ -1,9 +1,11 @@
-import Home from "./pages/Home"; 
- const App=()=>{
+import Home from "./pages/Home";
+import ScrollToTop from "./components/ScrollToTop";
+const App = () => {
   return (
     <div>
-    <Home/>
-</div>
+      <Home />
+      <ScrollToTop />
+    </div>
   )
 }
 export default App;
